@@ -25,23 +25,16 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
-    transition: opacity 0.5s ease;
 }
 
-/* === SHARED OVERLAY (Default Centered for Page 1) === */
+/* Page 1 - Title Overlay (Centered) */
 .title-overlay {
-    position: absolute;
+    position: relative;
     z-index: 10;
     text-align: center;
     pointer-events: none;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* Page 1 (Centered) HARLEM */
 .title-harlem {
     font-family: 'EB Garamond', serif;
     font-size: 12vw;
@@ -51,7 +44,7 @@ body, html {
     margin: 0;
     cursor: pointer;
     pointer-events: auto;
-    transition: all 0.4s ease;
+    transition: 0.4s ease;
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
@@ -60,124 +53,80 @@ body, html {
     text-shadow: 0 0 10px #FFD700, 0 0 30px #FFD700, 0 0 50px #FFD700;
 }
 
-/* Page 1 (Centered) Subtitle */
 .title-series {
     font-family: 'Oswald', sans-serif;
     font-size: 1.5vw;
     letter-spacing: 0.4em;
     text-transform: uppercase;
     margin-top: 10px;
-    color: rgba(255, 255, 255, 0.8);
-    cursor: pointer;
-    pointer-events: auto;
-    transition: all 0.4s ease;
 }
 
-.title-series:hover {
-    color: #fff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
-}
-
-/* ========================================================= */
-/* === PAGE 2 (HOOK) SPECIFIC LAYOUT & HOVER EFFECT === */
-/* ========================================================= */
-
-/* The Hook Wrapper - Forces text to bottom-right corner */
+/* --- PAGE 2 HOOK (Bottom Right, but Center-Aligned) --- */
 .hook-wrapper {
     position: absolute;
-    bottom: 5vh; /* 5% up from the bottom */
-    right: 5vw; /* 5% from the right */
-    width: 40%; /* Text takes up 40% of the screen width */
-    max-width: 500px;
-    text-align: right;
+    bottom: 8%;  
+    right: 5%;   
+    text-align: center; /* This centers the text lines relative to each other */
+    width: 45%; /* Limits width so it doesn't cross the whole screen */
+    max-width: 600px;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Right align the block */
-    pointer-events: auto; /* Required for hover */
-    z-index: 20;
-    transition: all 0.4s ease;
+    align-items: center; /* Centers the header and body together */
 }
 
-/* Default "Unhighlighted" State */
-.title-hook-block {
-    opacity: 0.95;
-    transition: all 0.4s ease;
-    /* Default subtle drop shadow for basic readability */
-    filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.8));
-}
-
-/* === THE BLURRED DARK AURA GLOW ON HOVER === */
-.hook-wrapper:hover .title-hook-block {
-    /* 1. Scale slightly for a 3D effect */
-    transform: scale(1.03);
-    /* 2. Create the deep dark background "blur" right behind the text */
-    filter: 
-        drop-shadow(0px 0px 30px rgba(0,0,0,1))
-        drop-shadow(0px 0px 10px rgba(0,0,0,1))
-        drop-shadow(0px 0px 5px rgba(0,0,0,1));
-    /* 3. Pop the text colors (Gold and White) with brighter glow */
-    color: #fff;
-}
-
-/* The Hook : (Text styling) */
 .hook-header {
     font-family: 'EB Garamond', serif;
-    font-size: 2.2em;
-    font-weight: 600;
-    color: #FFD700; /* Matching Gold */
+    font-size: 3em; /* Bigger size */
+    color: #FFD700;
     margin: 0;
-    padding-bottom: 5px;
-    letter-spacing: 0.1em;
+    padding: 0;
+    transition: all 0.4s ease;
 }
 
-/* What if history... (Text styling) */
 .hook-body {
-    font-family: 'sans-serif'; /* Simple and clean for readability */
-    font-weight: 300;
-    font-size: 1.1em;
+    font-family: 'EB Garamond', serif;
+    font-size: 2em; /* Bigger size */
     color: #fff;
     margin: 0;
-    line-height: 1.5;
-    letter-spacing: 0.05em;
+    line-height: 1.2;
+    transition: all 0.4s ease;
 }
 
-/* ========================================================= */
+/* Glow Effect on Hover for Page 2 */
+.hook-wrapper:hover .hook-header, 
+.hook-wrapper:hover .hook-body {
+    color: #fff;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+}
+
+.hook-wrapper:hover {
+    filter: drop-shadow(0 0 20px rgba(0,0,0,1));
+    transform: scale(1.02);
+}
+
 /* Navigation Buttons */
 .nav-button {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(0,0,0,0.5);
+    border: 1px solid white;
     color: white;
     font-size: 30px;
-    width: 60px;
-    height: 60px;
+    padding: 20px;
     cursor: pointer;
     z-index: 100;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s;
 }
 
-.nav-button:hover { background: white; color: black; }
 .prev { left: 20px; }
 .next { right: 20px; }
 
-/* Mobile Adjustments */
 @media (max-width: 768px) {
-    .title-harlem { font-size: 18vw; }
-    .title-series { font-size: 3.5vw; }
-    
-    /* Hook layout on mobile */
-    .hook-wrapper { 
-        width: 80%; 
-        bottom: 15vh; /* Raise higher above navigation */
-        right: 10vw;
-    }
-    .hook-header { font-size: 1.8em; }
-    .hook-body { font-size: 0.9em; }
+    .hook-wrapper { width: 90%; bottom: 12%; right: 5%; }
+    .hook-header { font-size: 2em; }
+    .hook-body { font-size: 1.4em; }
 }
