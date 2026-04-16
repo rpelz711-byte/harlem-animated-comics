@@ -26,13 +26,11 @@ function updatePage() {
     const page = comicPages[currentIndex];
     container.innerHTML = '';
 
-    // Create Background
     const bg = document.createElement('div');
     bg.className = 'full-bg';
     bg.style.backgroundImage = `url('${page.url}')`;
     container.appendChild(bg);
 
-    // Page 1: Title
     if (page.type === 'title') {
         const overlay = document.createElement('div');
         overlay.className = 'title-overlay';
@@ -42,7 +40,6 @@ function updatePage() {
         `;
         container.appendChild(overlay);
     } 
-    // Page 2: Hook
     else if (page.type === 'hook') {
         const overlay = document.createElement('div');
         overlay.className = 'hook-wrapper';
@@ -52,7 +49,6 @@ function updatePage() {
         `;
         container.appendChild(overlay);
     }
-    // Page 8: Era Intro + Audio Player
     else if (page.type === 'era_intro') {
         const overlay = document.createElement('div');
         overlay.style.width = "100%"; overlay.style.height = "100%";
@@ -70,11 +66,9 @@ function updatePage() {
             </div>
             <div class="overlay-element spec-player">
                 <h3 class="spec-player-title">HARLEM</h3>
-                <div class="timeline-container">
-                    <div id="harlem-slider" class="timeline-slider">
-                        <div id="harlem-progress" class="timeline-progress"></div>
-                        <div id="harlem-handle" class="timeline-handle"></div>
-                    </div>
+                <div class="timeline-slider" id="harlem-slider">
+                    <div id="harlem-progress" class="timeline-progress"></div>
+                    <div id="harlem-handle" class="timeline-handle"></div>
                 </div>
                 <div class="player-controls">
                     <button class="icon-btn material-icons">favorite_border</button>
