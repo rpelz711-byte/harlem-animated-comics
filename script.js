@@ -2,10 +2,6 @@ const container = document.getElementById('content-container');
 const nextBtn = document.getElementById('next-btn');
 const prevBtn = document.getElementById('prev-btn');
 
-/**
- * COMIC PAGE LIST
- * Page 8 (Era Intro) has unique structure for positioned floating labels.
- */
 const comicPages = [
     { type: 'title', url: 'page1-comics.png' },
     { type: 'hook', url: 'page2-comics.png' },
@@ -14,7 +10,6 @@ const comicPages = [
     { type: 'img', url: 'page5-comics.png' },
     { type: 'img', url: 'page6-comics.png' },
     { type: 'img', url: 'page7-comics.png' },
-    // Update Page 8 to have unique structural rendering
     { 
         type: 'era_intro', 
         url: 'page8-comics.png',
@@ -22,8 +17,6 @@ const comicPages = [
         composer_name: '"The Composer"',
         voice_title: 'Female Muse',
         voice_name: '"The Voice"',
-        demon_title: 'Primary Demon:',
-        demon_name: 'The Silencer',
         era_title: '1910s—1920s — THE FOUNDATION ERA'
     }
 ];
@@ -39,46 +32,38 @@ function updatePage() {
     bg.style.backgroundImage = `url('${page.url}')`;
     container.appendChild(bg);
 
-    // Page 1 Overlay (Centered)
     if (page.type === 'title') {
         const overlay = document.createElement('div');
         overlay.className = 'title-overlay';
         overlay.innerHTML = `
-            <div class="centered-harlem text-label">
-                <h1 class="title-harlem">HARLEM</h1>
-                <p class="title-series">An Animated Musical Time-Travel Series</p>
-            </div>`;
+            <h1 class="title-harlem">HARLEM</h1>
+            <p class="title-series">An Animated Musical Time-Travel Series</p>
+        `;
         container.appendChild(overlay);
     } 
-    // Page 2 Overlay (Bottom Right)
     else if (page.type === 'hook') {
         const overlay = document.createElement('div');
-        overlay.className = 'title-overlay';
+        overlay.className = 'hook-wrapper';
         overlay.innerHTML = `
-            <div class="hook-block text-label">
-                <p class="hook-header">The Hook :</p>
-                <p class="hook-body">What if history wasn’t something you learned... but something your family barely survived?</p>
-            </div>`;
+            <p class="hook-header">The Hook :</p>
+            <p class="hook-body">What if history wasn’t something you learned... but something your family barely survived?</p>
+        `;
         container.appendChild(overlay);
     }
-    // Page 8 Overlay (Positioned Floating Labels & Era Title)
     else if (page.type === 'era_intro') {
         const overlay = document.createElement('div');
-        overlay.className = 'title-overlay';
-        
-        // Render Positioned Character Labels and Era Title
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
         overlay.innerHTML = `
-            <div class="label-block top-left-composer text-label">
+            <div class="label-block top-left-composer">
                 <p class="era-label-role">${page.composer_title}</p>
                 <p class="era-label-title">${page.composer_name}</p>
             </div>
-            
-            <div class="label-block bottom-center-voice text-label">
+            <div class="label-block bottom-center-voice">
                 <p class="era-label-role">${page.voice_title}</p>
                 <p class="era-label-title">${page.voice_name}</p>
             </div>
-            
-            <div class="era-title-block text-label">
+            <div class="era-title-block">
                 <h1 class="era-title">${page.era_title}</h1>
             </div>
         `;
@@ -86,7 +71,6 @@ function updatePage() {
     }
 }
 
-// Navigation Listeners
 nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % comicPages.length;
     updatePage();
