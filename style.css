@@ -25,14 +25,59 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
+    transition: opacity 0.5s ease;
 }
 
-/* Page 1 - Title Overlay (Centered) */
+/* === SHARED OVERLAY & HOVER AURA === */
 .title-overlay {
-    position: relative;
+    position: absolute;
     z-index: 10;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass to the elements */
+}
+
+/* Base style for floating text blocks to enable hover aura */
+.text-label {
+    pointer-events: auto; /* Enable hover on the text blocks */
+    transition: all 0.4s ease;
+}
+
+/* Base default dark shadow for all text blocks to help readability */
+.text-label h1, .text-label h2, .text-label p {
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.8));
+    transition: all 0.4s ease;
+}
+
+/* === THE SPECIALIZED HOVER AURA EFFECT (Aura Glow) === */
+.text-label:hover {
+    transform: scale(1.02); /* Slight pop forward */
+    
+    /* 1. Deep dark background "aura" */
+    filter: 
+        drop-shadow(0px 0px 30px rgba(0,0,0,1))
+        drop-shadow(0px 0px 10px rgba(0,0,0,1))
+        drop-shadow(0px 0px 5px rgba(0,0,0,1));
+}
+
+/* Brighter text colors + glow inside the Aura on Hover */
+.text-label:hover p, .text-label:hover h2 {
+    color: #fff; /* Swap to pure white */
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+}
+
+.text-label:hover .era-title {
+    text-shadow: 0 0 15px #FFD700, 0 0 35px #FFD700;
+}
+
+/* ========================================================= */
+/* === PAGE 1 (Centered HARLEM) === */
+.centered-harlem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    pointer-events: none;
 }
 
 .title-harlem {
@@ -42,15 +87,6 @@ body, html {
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin: 0;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: 0.4s ease;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.title-harlem:hover {
-    color: #fff;
-    text-shadow: 0 0 10px #FFD700, 0 0 30px #FFD700, 0 0 50px #FFD700;
 }
 
 .title-series {
@@ -61,72 +97,143 @@ body, html {
     margin-top: 10px;
 }
 
-/* --- PAGE 2 HOOK (Bottom Right, but Center-Aligned) --- */
-.hook-wrapper {
+/* === PAGE 2 (BOTTOM-RIGHT HOOK) === */
+.hook-block {
     position: absolute;
-    bottom: 8%;  
-    right: 5%;   
-    text-align: center; /* This centers the text lines relative to each other */
-    width: 45%; /* Limits width so it doesn't cross the whole screen */
-    max-width: 600px;
+    bottom: 5vh;
+    right: 5vw;
+    width: 40%;
+    max-width: 500px;
+    text-align: right;
     pointer-events: auto;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers the header and body together */
 }
 
 .hook-header {
     font-family: 'EB Garamond', serif;
-    font-size: 3em; /* Bigger size */
+    font-size: 2.2em;
+    font-weight: 600;
     color: #FFD700;
-    margin: 0;
-    padding: 0;
-    transition: all 0.4s ease;
 }
 
 .hook-body {
-    font-family: 'EB Garamond', serif;
-    font-size: 2em; /* Bigger size */
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 1.1em;
     color: #fff;
+}
+
+/* ========================================================= */
+/* === PAGE 8 (ERA INTRO) SPECIFIC PLACEMENT === */
+/* ========================================================= */
+
+/* Floats text blocks relative to the main scene */
+.label-block {
+    position: absolute;
+    max-width: 300px;
+    text-align: center;
+}
+
+/* Label Style: Top Left ("Composer") */
+.top-left-composer {
+    top: 15vh; /* Upper-left positioning */
+    left: 10vw;
+}
+
+/* Label Style: Bottom Center ("Voice") */
+.bottom-center-voice {
+    bottom: 20vh; /* Floating over character, bottom-ish */
+    left: 40vw;
+}
+
+/* Text Formatting for Page 8 Labels */
+.era-label-role {
+    font-family: sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.era-label-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #FFD700;
     margin: 0;
     line-height: 1.2;
+}
+
+/* Main Era Title Placement (centered-ish on bottom half) */
+.era-title-block {
+    position: absolute;
+    bottom: 10vh; /* Low on the screen */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
     transition: all 0.4s ease;
 }
 
-/* Glow Effect on Hover for Page 2 */
-.hook-wrapper:hover .hook-header, 
-.hook-wrapper:hover .hook-body {
-    color: #fff;
-    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+.era-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 6vw; /* Cinematic size, responsive */
+    font-weight: 600;
+    color: #FFD700;
+    letter-spacing: 0.05em;
+    margin: 0;
+    transition: all 0.4s ease;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
-.hook-wrapper:hover {
-    filter: drop-shadow(0 0 20px rgba(0,0,0,1));
-    transform: scale(1.02);
+/* Override the shared aura behavior slightly for this huge text block */
+.era-title-block:hover {
+    transform: translateX(-50%) scale(1.05); /* Account for translate */
+    filter: 
+        drop-shadow(0px 0px 30px rgba(0,0,0,1))
+        drop-shadow(0px 0px 10px rgba(0,0,0,1));
 }
 
+/* ========================================================= */
 /* Navigation Buttons */
 .nav-button {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    border: 1px solid white;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     color: white;
     font-size: 30px;
-    padding: 20px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
     z-index: 100;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
 }
 
+.nav-button:hover { background: white; color: black; }
 .prev { left: 20px; }
 .next { right: 20px; }
 
+/* Mobile Adjustments */
 @media (max-width: 768px) {
-    .hook-wrapper { width: 90%; bottom: 12%; right: 5%; }
-    .hook-header { font-size: 2em; }
-    .hook-body { font-size: 1.4em; }
+    .title-harlem { font-size: 18vw; }
+    .hook-block { width: 80%; bottom: 12%; right: 5%; }
+    .hook-header { font-size: 1.8em; }
+    .hook-body { font-size: 0.9em; }
+    
+    /* Era layout on mobile - stacking labels */
+    .label-block { max-width: 80%; left: 10vw; text-align: left;}
+    .top-left-composer { top: 10vh; }
+    .bottom-center-voice { bottom: 25vh; left: 10vw; }
+    
+    .era-title { font-size: 9vw; }
+    .era-title-block { bottom: 8vh; }
 }
