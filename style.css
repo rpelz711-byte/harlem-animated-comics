@@ -1,43 +1,80 @@
+/* General Setup */
 body, html {
     margin: 0;
     padding: 0;
+    height: 100vh;
+    width: 100vw;
     background-color: #000;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#content-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Responsive Image and Video Handling */
+#bg-image, video {
+    width: 100vw;
     height: 100vh;
-    overflow: hidden;
-}
-
-.comic-container {
-    position: relative;
-    width: 100%;
-    max-width: 1200px; /* Adjust based on your video aspect ratio */
-    height: auto;
-}
-
-video {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 4px solid #fff; /* Comic border effect */
-}
-
-.nav-button {
+    /* 'cover' crops slightly to fill the screen */
+    /* Use 'contain' if you want to see the WHOLE image with black bars on the side */
+    object-fit: cover; 
+    background-size: cover;
+    background-position: center;
     position: absolute;
-    right: 20px;
+}
+
+/* The Next Button - Responsive size */
+.nav-button {
+    position: fixed;
+    right: 5%;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Modern frosted glass effect */
+    border: 2px solid rgba(255, 255, 255, 0.8);
     color: white;
-    font-size: 50px;
     cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 10px;
-    transition: background 0.3s;
+    z-index: 100;
+    transition: all 0.2s ease;
+    
+    /* Default size for desktop */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-button:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: white;
+    color: black;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+    .nav-button {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        right: 15px; /* Bring closer to edge on small screens */
+        background: rgba(0, 0, 0, 0.7); /* Darker for better visibility on mobile */
+    }
+    
+    /* Optional: If your art is vertical, you can change object-fit to contain 
+       so the top and bottom don't get cut off on phones */
+    #bg-image, video {
+        object-fit: contain; 
+    }
 }
