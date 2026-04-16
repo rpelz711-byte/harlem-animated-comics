@@ -16,6 +16,7 @@ const comicPages = [
         url: 'page8-comics.png',
         composer_title: 'Male Muse', composer_name: '"The Composer"',
         voice_title: 'Female Muse', voice_name: '"The Voice"',
+        demon_title: 'Primary Demon:', demon_name: '"The Silencer"',
         era_title: '1910s—1920s — THE FOUNDATION ERA'
     }
 ];
@@ -61,21 +62,27 @@ function updatePage() {
                 <p class="era-label-role">${page.voice_title}</p>
                 <p class="era-label-title">${page.voice_name}</p>
             </div>
+            <div class="overlay-element label-block mid-right-demon">
+                <p class="era-label-role">${page.demon_title}</p>
+                <p class="era-label-title">${page.demon_name}</p>
+            </div>
             <div class="overlay-element era-title-block">
                 <h1 class="era-title">${page.era_title}</h1>
             </div>
             <div class="overlay-element spec-player">
                 <h3 class="spec-player-title">HARLEM</h3>
-                <div class="timeline-slider" id="harlem-slider">
-                    <div id="harlem-progress" class="timeline-progress"></div>
-                    <div id="harlem-handle" class="timeline-handle"></div>
+                <div class="timeline-container">
+                    <div id="harlem-slider" class="timeline-slider">
+                        <div id="harlem-progress" class="timeline-progress"></div>
+                        <div id="harlem-handle" class="timeline-handle"></div>
+                    </div>
                 </div>
                 <div class="player-controls">
-                    <button class="icon-btn material-icons">favorite_border</button>
+                    <button class="icon-btn material-icons teal-text">favorite</button>
                     <button class="icon-btn material-icons">skip_previous</button>
                     <button id="harlem-play-btn" class="icon-btn"><span class="material-icons">play_arrow</span></button>
                     <button class="icon-btn material-icons">skip_next</button>
-                    <button class="icon-btn material-icons">shuffle</button>
+                    <button class="icon-btn material-icons teal-text">shuffle</button>
                 </div>
             </div>
         `;
