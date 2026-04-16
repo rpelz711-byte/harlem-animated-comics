@@ -18,54 +18,20 @@ body, html {
     position: relative;
 }
 
-/* === GLOBAL BACKGROUND FIX (PREVENTS CROPPING) === */
+/* === GLOBAL BACKGROUND (CONTAIN) === */
 .full-bg {
     width: 100vw;
     height: 100vh;
-    /* 'contain' ensures the WHOLE image is visible on any screen */
     background-size: contain !important; 
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #000; /* Fills gaps with black */
+    background-color: #000;
     position: absolute;
     top: 0;
     left: 0;
 }
 
-/* === NAVIGATION BUTTONS (PERFECT CIRCLES) === */
-.nav-button {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(5px);
-    border: 1px solid white;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    z-index: 100;
-    transition: all 0.2s ease;
-    
-    /* Strict dimensions for a perfect circle */
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.nav-button:hover {
-    background: white;
-    color: black;
-    transform: translateY(-50%) scale(1.1);
-}
-
-.prev { left: 20px; }
-.next { right: 20px; }
-
-/* === OVERLAYS (PAGES 1, 2, 8) === */
+/* === PAGE 1 & 2 OVERLAYS (WITH GLOW) === */
 .title-overlay {
     position: relative;
     z-index: 10;
@@ -74,14 +40,14 @@ body, html {
 }
 
 .title-harlem {
-    font-size: 10vw; /* Slightly smaller to fit 'contain' logic better */
+    font-size: 10vw;
     color: #FFD700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin: 0;
     cursor: pointer;
     pointer-events: auto;
-    transition: 0.4s ease;
+    transition: all 0.4s ease;
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
@@ -108,20 +74,76 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.4s;
 }
 
 .hook-header { font-size: 2.5em; color: #FFD700; margin: 0; }
 .hook-body { font-size: 1.5em; color: #fff; line-height: 1.2; margin: 0; }
 
-/* === PAGE 8 PLAYER & LABELS === */
-.overlay-element { position: absolute; z-index: 10; pointer-events: auto; }
-.top-left-composer { top: 15vh; left: 10vw; text-align: center; }
-.bottom-center-voice { bottom: 25vh; left: 42vw; text-align: center; }
-.era-label-role { font-family: sans-serif; font-size: 0.9em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin: 0; }
-.era-label-title { font-size: 1.5em; color: #FFD700; margin: 0; }
-.era-title-block { bottom: 5vh; left: 50%; transform: translateX(-50%); width: 100%; text-align: center; }
-.era-title { font-size: 3vw; color: #FFD700; text-transform: uppercase; margin: 0; }
+.hook-wrapper:hover {
+    filter: drop-shadow(0 0 20px rgba(0,0,0,1));
+    text-shadow: 0 0 15px #FFD700;
+}
 
+/* === PAGE 8 OVERLAYS (POSITIONED & GLOWING) === */
+.overlay-element { 
+    position: absolute; 
+    z-index: 10; 
+    pointer-events: auto; 
+    transition: 0.4s ease;
+}
+
+/* Positioned above the Male Muse's head */
+.top-left-composer { 
+    top: 12%; 
+    left: 10%; 
+    text-align: center; 
+}
+
+.bottom-center-voice { 
+    bottom: 25vh; 
+    left: 42vw; 
+    text-align: center; 
+}
+
+.era-label-role { 
+    font-family: sans-serif; 
+    font-size: 0.9em; 
+    color: rgba(255,255,255,0.7); 
+    text-transform: uppercase; 
+    margin: 0; 
+}
+
+.era-label-title { 
+    font-size: 1.5em; 
+    color: #FFD700; 
+    margin: 0; 
+}
+
+/* Restore Page 8 Glow Animation */
+.overlay-element:hover .era-label-title, 
+.overlay-element:hover .era-title {
+    color: #fff;
+    text-shadow: 0 0 10px #FFD700, 0 0 30px #FFD700;
+}
+
+.era-title-block { 
+    bottom: 5vh; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 100%; 
+    text-align: center; 
+}
+
+.era-title { 
+    font-size: 3vw; 
+    color: #FFD700; 
+    text-transform: uppercase; 
+    margin: 0; 
+    transition: 0.4s;
+}
+
+/* === PAGE 8 PLAYER === */
 .spec-player {
     bottom: 22%;
     right: 12vw;
@@ -142,3 +164,34 @@ body, html {
 .player-controls { width: 100%; display: flex; justify-content: space-around; align-items: center; }
 .icon-btn { background: none; border: none; color: #fff; cursor: pointer; font-size: 20px; }
 #harlem-play-btn { color: #00FFB4; border: 2px solid #00FFB4; border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; }
+
+/* === NAVIGATION BUTTONS === */
+.nav-button {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid white;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s ease;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-button:hover {
+    background: white;
+    color: black;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
