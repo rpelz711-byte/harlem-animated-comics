@@ -23,25 +23,24 @@ body, html {
     position: absolute; top: 0; left: 0;
 }
 
-/* === UNIVERSAL HOVER EFFECT (GLOW + DARK BLUR) === */
-.overlay-element, .title-harlem, .hook-wrapper, .label-block, .era-title {
+/* UNIVERSAL HOVER EFFECT (GLOW + DARK BLUR) */
+.title-harlem, .hook-wrapper, .label-block, .era-title {
     pointer-events: auto;
     transition: all 0.4s ease-in-out;
-    border-radius: 15px; /* Smooth corners for the blur area */
+    border-radius: 15px;
 }
 
-/* This creates the dark blur "Box" around the text when you hover */
 .title-harlem:hover, .hook-wrapper:hover, .label-block:hover, .era-title:hover {
-    background: rgba(0, 0, 0, 0.4); /* Dark tint */
-    backdrop-filter: blur(10px);    /* The blur effect */
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 10px 20px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
     transform: scale(1.05);
     z-index: 50;
 }
 
-/* === PAGE 1: TITLE GLOW === */
+/* PAGE 1 & 2 OVERLAYS */
 .title-overlay {
     position: relative; z-index: 10;
     text-align: center; pointer-events: none;
@@ -65,7 +64,6 @@ body, html {
     text-transform: uppercase; margin-top: 10px;
 }
 
-/* === PAGE 2: HOOK GLOW === */
 .hook-wrapper {
     position: absolute; bottom: 8%; right: 5%;
     text-align: center; width: 45%; max-width: 600px;
@@ -78,10 +76,16 @@ body, html {
 .hook-wrapper:hover .hook-header { color: #fff; text-shadow: 0 0 15px #FFD700; }
 .hook-wrapper:hover .hook-body { text-shadow: 0 0 10px #fff; }
 
-/* === PAGE 8: LABELS & PLAYER GLOW === */
-.overlay-element { position: absolute; z-index: 10; }
+/* PAGE 8: LABELS & PLAYER */
+.overlay-element { position: absolute; z-index: 10; pointer-events: auto; }
 
-.top-left-composer { top: 12%; left: 10%; text-align: center; }
+/* MOVED ABOVE TRUMPET PLAYER HAT */
+.top-left-composer { 
+    top: 10%; 
+    left: 14%; 
+    text-align: center; 
+}
+
 .bottom-center-voice { bottom: 25vh; left: 42vw; text-align: center; }
 
 .era-label-role { font-family: sans-serif; font-size: 0.9em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin: 0; }
@@ -111,7 +115,7 @@ body, html {
 .nav-button:hover { background: white; color: black; }
 .prev { left: 20px; } .next { right: 20px; }
 
-/* AUDIO PLAYER */
+/* PLAYER */
 .spec-player {
     bottom: 22%; right: 12vw; width: 220px;
     background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px);
