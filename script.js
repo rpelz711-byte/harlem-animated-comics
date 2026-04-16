@@ -53,11 +53,11 @@ function updatePage() {
         const overlay = document.createElement('div');
         overlay.style.width = "100%"; overlay.style.height = "100%";
         overlay.innerHTML = `
-            <div class="overlay-element top-left-composer">
+            <div class="overlay-element label-block top-left-composer">
                 <p class="era-label-role">${page.composer_title}</p>
                 <p class="era-label-title">${page.composer_name}</p>
             </div>
-            <div class="overlay-element bottom-center-voice">
+            <div class="overlay-element label-block bottom-center-voice">
                 <p class="era-label-role">${page.voice_title}</p>
                 <p class="era-label-title">${page.voice_name}</p>
             </div>
