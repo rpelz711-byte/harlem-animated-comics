@@ -1,8 +1,6 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
+    margin: 0; padding: 0;
+    height: 100vh; width: 100vw;
     background-color: #000;
     overflow: hidden;
     color: #fff;
@@ -10,188 +8,113 @@ body, html {
 }
 
 #content-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
     position: relative;
 }
 
-/* === GLOBAL BACKGROUND (CONTAIN) === */
+/* GLOBAL BACKGROUND */
 .full-bg {
-    width: 100vw;
-    height: 100vh;
+    width: 100vw; height: 100vh;
     background-size: contain !important; 
     background-repeat: no-repeat;
     background-position: center;
     background-color: #000;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: absolute; top: 0; left: 0;
 }
 
-/* === PAGE 1 & 2 OVERLAYS (WITH GLOW) === */
+/* === UNIVERSAL HOVER EFFECT (GLOW + DARK BLUR) === */
+.overlay-element, .title-harlem, .hook-wrapper, .label-block, .era-title {
+    pointer-events: auto;
+    transition: all 0.4s ease-in-out;
+    border-radius: 15px; /* Smooth corners for the blur area */
+}
+
+/* This creates the dark blur "Box" around the text when you hover */
+.title-harlem:hover, .hook-wrapper:hover, .label-block:hover, .era-title:hover {
+    background: rgba(0, 0, 0, 0.4); /* Dark tint */
+    backdrop-filter: blur(10px);    /* The blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+    z-index: 50;
+}
+
+/* === PAGE 1: TITLE GLOW === */
 .title-overlay {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    pointer-events: none;
+    position: relative; z-index: 10;
+    text-align: center; pointer-events: none;
 }
 
 .title-harlem {
-    font-size: 10vw;
-    color: #FFD700;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin: 0;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: all 0.4s ease;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    font-size: 10vw; color: #FFD700;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    margin: 0; display: inline-block;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
 .title-harlem:hover {
     color: #fff;
-    text-shadow: 0 0 10px #FFD700, 0 0 30px #FFD700, 0 0 50px #FFD700;
+    text-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700;
 }
 
 .title-series {
     font-family: 'Oswald', sans-serif;
-    font-size: 1.5vw;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    margin-top: 10px;
+    font-size: 1.5vw; letter-spacing: 0.4em;
+    text-transform: uppercase; margin-top: 10px;
 }
 
+/* === PAGE 2: HOOK GLOW === */
 .hook-wrapper {
-    position: absolute;
-    bottom: 10%;
-    right: 5%;
-    text-align: center;
-    width: 45%;
-    pointer-events: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: 0.4s;
+    position: absolute; bottom: 8%; right: 5%;
+    text-align: center; width: 45%; max-width: 600px;
+    display: flex; flex-direction: column; align-items: center;
 }
 
 .hook-header { font-size: 2.5em; color: #FFD700; margin: 0; }
-.hook-body { font-size: 1.5em; color: #fff; line-height: 1.2; margin: 0; }
+.hook-body { font-size: 1.8em; color: #fff; line-height: 1.2; margin: 0; }
 
-.hook-wrapper:hover {
-    filter: drop-shadow(0 0 20px rgba(0,0,0,1));
+.hook-wrapper:hover .hook-header { color: #fff; text-shadow: 0 0 15px #FFD700; }
+.hook-wrapper:hover .hook-body { text-shadow: 0 0 10px #fff; }
+
+/* === PAGE 8: LABELS & PLAYER GLOW === */
+.overlay-element { position: absolute; z-index: 10; }
+
+.top-left-composer { top: 12%; left: 10%; text-align: center; }
+.bottom-center-voice { bottom: 25vh; left: 42vw; text-align: center; }
+
+.era-label-role { font-family: sans-serif; font-size: 0.9em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin: 0; }
+.era-label-title { font-size: 1.5em; color: #FFD700; margin: 0; }
+
+.label-block:hover .era-label-title {
+    color: #fff;
     text-shadow: 0 0 15px #FFD700;
 }
 
-/* === PAGE 8 OVERLAYS (POSITIONED & GLOWING) === */
-.overlay-element { 
-    position: absolute; 
-    z-index: 10; 
-    pointer-events: auto; 
-    transition: 0.4s ease;
-}
+.era-title-block { bottom: 5vh; left: 50%; transform: translateX(-50%); text-align: center; width: auto; }
+.era-title { font-size: 3vw; color: #FFD700; text-transform: uppercase; margin: 0; display: inline-block; padding: 5px 20px;}
 
-/* Positioned above the Male Muse's head */
-.top-left-composer { 
-    top: 12%; 
-    left: 10%; 
-    text-align: center; 
-}
-
-.bottom-center-voice { 
-    bottom: 25vh; 
-    left: 42vw; 
-    text-align: center; 
-}
-
-.era-label-role { 
-    font-family: sans-serif; 
-    font-size: 0.9em; 
-    color: rgba(255,255,255,0.7); 
-    text-transform: uppercase; 
-    margin: 0; 
-}
-
-.era-label-title { 
-    font-size: 1.5em; 
-    color: #FFD700; 
-    margin: 0; 
-}
-
-/* Restore Page 8 Glow Animation */
-.overlay-element:hover .era-label-title, 
-.overlay-element:hover .era-title {
+.era-title:hover {
     color: #fff;
-    text-shadow: 0 0 10px #FFD700, 0 0 30px #FFD700;
+    text-shadow: 0 0 25px #FFD700;
 }
 
-.era-title-block { 
-    bottom: 5vh; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    width: 100%; 
-    text-align: center; 
-}
-
-.era-title { 
-    font-size: 3vw; 
-    color: #FFD700; 
-    text-transform: uppercase; 
-    margin: 0; 
-    transition: 0.4s;
-}
-
-/* === PAGE 8 PLAYER === */
-.spec-player {
-    bottom: 22%;
-    right: 12vw;
-    width: 220px;
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.spec-player-title { font-family: 'Oswald', sans-serif; font-size: 0.8em; letter-spacing: 0.1em; margin-bottom: 8px; }
-.timeline-slider { width: 100%; height: 3px; background: rgba(255,255,255,0.2); cursor: pointer; position: relative; margin: 10px 0; }
-.timeline-progress { height: 100%; background: #00FFB4; width: 0%; }
-.timeline-handle { width: 8px; height: 8px; background: #00FFB4; border-radius: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%); left: 0%; }
-.player-controls { width: 100%; display: flex; justify-content: space-around; align-items: center; }
-.icon-btn { background: none; border: none; color: #fff; cursor: pointer; font-size: 20px; }
-#harlem-play-btn { color: #00FFB4; border: 2px solid #00FFB4; border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; }
-
-/* === NAVIGATION BUTTONS === */
+/* NAVIGATION BUTTONS */
 .nav-button {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(5px);
-    border: 1px solid white;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    z-index: 100;
-    transition: all 0.2s ease;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.5); border: 1px solid white;
+    color: white; font-size: 30px; width: 60px; height: 60px;
+    cursor: pointer; z-index: 100; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
 }
+.nav-button:hover { background: white; color: black; }
+.prev { left: 20px; } .next { right: 20px; }
 
-.nav-button:hover {
-    background: white;
-    color: black;
-    transform: translateY(-50%) scale(1.1);
+/* AUDIO PLAYER */
+.spec-player {
+    bottom: 22%; right: 12vw; width: 220px;
+    background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px;
+    padding: 12px; display: flex; flex-direction: column; align-items: center;
 }
-
-.prev { left: 20px; }
-.next { right: 20px; }
